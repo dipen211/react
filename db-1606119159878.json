@@ -1,0 +1,18 @@
+{
+  "customers": [
+    {
+      "id": 1,
+      "first_name": "Customer_1",
+      "last_name": "Customer_11",
+      "email": "customer1@mail.com",
+      "password": "00000000000"
+    },
+    {
+      "id": 2,
+      "first_name": "Customer_2",
+      "last_name": "Customer_2",
+      "email": "customer2@mail.com",
+      "password": "00000000000"
+    }
+  ]
+}
