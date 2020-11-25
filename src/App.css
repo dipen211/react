@@ -1,5 +1,3 @@
-@import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
-
 .form-wrapper {
   width: 500px;
   margin: 0 auto;
@@ -31,6 +29,11 @@ nav ul li a:hover {
   color: white;
   text-decoration: none;
 }
+
+.nav-header{
+  width: 100%;
+}
+
 table {
   margin-top: 50px;
 }
@@ -44,4 +47,22 @@ table {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* MODEL */
+.popupmodal {
+  font-size: 15px;
+  background-color: white;
+  border: 3px solid gray;
+}
+.popupmodal > .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+}
+.popupmodal > .content {
+  width: 100%;
+  padding: 10px 5px;
 }

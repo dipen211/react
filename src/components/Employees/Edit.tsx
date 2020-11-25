@@ -53,8 +53,7 @@ class EditEmployee extends React.Component<RouteComponentProps<any>, IFormState>
             <div className="App">
                 {this.state.employee &&
                     <div>
-                        < h1 > Employee List Management App</h1>
-                        <p> Built with React.js and TypeScript </p>
+                        < h1 > Employee Details Edit</h1>
 
                         <div>
                             <div className={"col-md-12 form-wrapper"}>
