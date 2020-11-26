@@ -3,6 +3,7 @@ import axios from 'axios';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { withTranslation } from 'react-i18next';
 
 export interface IValues {
     id: string,
@@ -18,7 +19,7 @@ export interface IFormState {
     loading: boolean;
 }
 class Create extends React.Component<RouteComponentProps<any>, IFormState> {
-    constructor(props: RouteComponentProps) {
+    constructor(props: any) {
         super(props);
         this.state = {
             team_id: this.props.match.params.id,
@@ -32,10 +33,13 @@ class Create extends React.Component<RouteComponentProps<any>, IFormState> {
             submitSuccess: false,
         }
     }
+
     public render() {
         const { submitSuccess } = this.state;
+        // const { t } = this.props;
         return (
             <div>
+                {/* {this.props.t("hello.label")} */}
                 <div className={"col-md-12 form-wrapper"}>
                     <h2> Create Employee </h2>
                     {!submitSuccess && (
@@ -106,11 +110,11 @@ class Create extends React.Component<RouteComponentProps<any>, IFormState> {
                                             <ErrorMessage name="email" component="div" className="invalid-feedback" />
                                         </div>
                                     </div>
-                                        <div className="form-group col-12">
-                                            <label>Password</label>
-                                            <Field name="password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
-                                            <ErrorMessage name="password" component="div" className="invalid-feedback" />
-                                        </div>
+                                    <div className="form-group col-12">
+                                        <label>Password</label>
+                                        <Field name="password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
+                                        <ErrorMessage name="password" component="div" className="invalid-feedback" />
+                                    </div>
                                     <div className="form-group">
                                         <button type="submit" disabled={isSubmitting} className="btn btn-primary">
                                             {isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
