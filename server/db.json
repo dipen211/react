@@ -48,6 +48,14 @@
       "last_name": "Patel",
       "email": "pateldipen161@gmail.com",
       "password": "xcvbnmncxcv"
+    },
+    {
+      "id": "1",
+      "team_id": "2",
+      "first_name": "Dipenkumar",
+      "last_name": "Patel",
+      "email": "pateldipen161@gmail.com",
+      "password": "scvbhjkloijuhg"
     }
   ]
 }

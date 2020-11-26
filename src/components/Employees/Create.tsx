@@ -1,9 +1,10 @@
 import * as React from 'react';
 import axios from 'axios';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { withTranslation } from 'react-i18next';
+import '../../i18n';
 
 export interface IValues {
     id: string,
@@ -130,4 +131,4 @@ class Create extends React.Component<RouteComponentProps<any>, IFormState> {
         )
     }
 }
-export default withRouter(Create);
+export default Create;
