@@ -117,4 +117,4 @@ class Create extends Component<RouteComponentProps<any>, IFormState> {
         )
     }
 }
-export default withTranslation()(Create);
+export default (Create);

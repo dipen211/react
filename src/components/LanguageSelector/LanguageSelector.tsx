@@ -1,20 +1,32 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import '../../translations/config';
+import React from "react";
+import i18n from "i18next";
+import "../../translations/config";
+import { Component } from "react";
 
-const LanguageSelector = () => {
-  const { t, i18n } = useTranslation()
+class LanguageSelector extends Component {
+  // const { t, i18n } = useTranslation()
 
-  const changeLanguage = (event: any) => {
-    i18n.changeLanguage(event.target.value)
+  // changeLanguage = (event) => {
+  //   i18n.changeLanguage(event.target.value);
+  // };
+
+  languageChangeHandler = (e: { target: { value: string; }; }) => {
+    i18n.changeLanguage(e.target.value);
+  };
+  render() {
+    return (
+      <div>
+        <select onChange={(e) => this.languageChangeHandler(e)}>
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+        </select>
+      </div>
+      // <div onChange={(e) => this.changeLanguage(e)}>
+      //   <input type="radio" value="en" name="language" /> English
+      //   <input type="radio" value="es" name="language" /> Traditional Chinese
+      // </div>
+    );
   }
-
-  return (
-    <div onChange={changeLanguage}>
-      <input type="radio" value="en" name="language" defaultChecked /> English
-      <input type="radio" value="zh-hk" name="language"/> Traditional Chinese
-    </div>
-  )
 }
 
-export default LanguageSelector
+export default LanguageSelector;
