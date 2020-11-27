@@ -4,7 +4,6 @@ import axios from 'axios';
 import Popup from 'reactjs-popup';
 import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 interface IState {
     employees: any[];
 }
@@ -41,7 +40,6 @@ export default class Employees extends React.Component<RouteComponentProps, ISta
                             <thead className="thead-light">
                                 <tr>
                                     <th scope="col"></th>
-                                    <th scope="col">ID</th>
                                     <th scope="col">Firstname</th>
                                     <th scope="col">Lastname</th>
                                     <th scope="col">Email</th>
@@ -53,7 +51,6 @@ export default class Employees extends React.Component<RouteComponentProps, ISta
                                 {employees.map(employee =>
                                     <tr key={employee.id}>
                                         <th scope="col"><Link to={`Create/${employee.id}`} className="btn btn-sm btn-outline-secondary"><FontAwesomeIcon icon={faPlusSquare} /></Link></th>
-                                        <td>{employee.id}</td>
                                         <td>{employee.first_name}</td>
                                         <td>{employee.last_name}</td>
                                         <td>{employee.email}</td>

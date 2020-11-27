@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import { RouteComponentProps } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import { withTranslation } from 'react-i18next';
-import '../../i18n';
+import i18n from '../../i18n';
+import ValidationFormSchema from '../validationSchema/ValidationFormSchema';
 
 export interface IValues {
     id: string,
@@ -19,7 +19,7 @@ export interface IFormState {
     submitSuccess: boolean;
     loading: boolean;
 }
-class Create extends React.Component<RouteComponentProps<any>, IFormState> {
+class Create extends Component<RouteComponentProps<any>, IFormState> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -37,10 +37,9 @@ class Create extends React.Component<RouteComponentProps<any>, IFormState> {
 
     public render() {
         const { submitSuccess } = this.state;
-        // const { t } = this.props;
         return (
             <div>
-                {/* {this.props.t("hello.label")} */}
+                {i18n.t("hello.label")}
                 <div className={"col-md-12 form-wrapper"}>
                     <h2> Create Employee </h2>
                     {!submitSuccess && (
@@ -55,20 +54,7 @@ class Create extends React.Component<RouteComponentProps<any>, IFormState> {
                     )}
                     <Formik
                         initialValues={this.state}
-                        validationSchema={Yup.object().shape({
-                            id: Yup.string()
-                                .required('ID is required'),
-                            first_name: Yup.string()
-                                .required('First Name is required'),
-                            last_name: Yup.string()
-                                .required('Last Name is required'),
-                            email: Yup.string()
-                                .email('Email is invalid')
-                                .required('Email is required'),
-                            password: Yup.string()
-                                .required('Password is required')
-                                .min(6, 'Password must be at least 6 characters'),
-                        })}
+                        validationSchema={ValidationFormSchema}
                         onSubmit={async values => {
                             this.setState({ loading: true });
                             const formData = {
@@ -131,4 +117,4 @@ class Create extends React.Component<RouteComponentProps<any>, IFormState> {
         )
     }
 }
-export default Create;
+export default withTranslation()(Create);
