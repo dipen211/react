@@ -15,7 +15,6 @@ export default class Navbar extends Component {
                             </li>
                         </ul>
                         <LanguageSelector />
-                        <Link className="btn btn-outline-light" to="/create">Create Customer</Link>
                     </nav>
                 </div>
             </div>)
