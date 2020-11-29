@@ -1,16 +1,21 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Popup from "reactjs-popup";
 import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withTranslation } from "react-i18next";
-import LanguageSelector from "../components/LanguageSelector/LanguageSelector";
-import { IProps, IState } from "../translations/stateProps";
+import { IProps, IState } from "../api/types/stateProps";
+import i18n from '../translations/i18n';
+import { Popups } from '../component/popup'
+
 class Employees extends React.Component<IProps, IState> {
   constructor(props: IProps | Readonly<IProps>) {
     super(props);
-    this.state = { employees: [] };
+    this.state = {
+      employees: [],
+      selectValue: [],
+      isOpen: false
+    };
   }
   public componentDidMount(): void {
     axios.get(`http://localhost:5000/employees`).then((data) => {
@@ -19,22 +24,27 @@ class Employees extends React.Component<IProps, IState> {
   }
   public deleteEmployee(id: number) {
     axios.delete(`http://localhost:5000/employees/${id}`).then(data => {
-        const index = this.state.employees.findIndex(employee => employee.id === id);
-        this.state.employees.splice(index, 1);
-        this.props.history.push('/');
+      const index = this.state.employees.findIndex(employee => employee.id === id);
+      this.state.employees.splice(index, 1);
+      this.props.history.push('/');
     })
-}
+  }
+  handleChange = (selectValue: any) => {
+    this.setState({ selectValue });
+    console.log(selectValue.length);
+  };
+  setSelectValue = () => {
+    console.log("hiii");
+    this.setState({ selectValue: [] });
+    console.log();
+  }
   render() {
     const employees = this.state.employees;
-    const { t } = this.props;
+    const { selectValue } = this.state;
+    const options = employees.map((employee) => (employee.id));
     return (
-      <div>
-        <LanguageSelector />
-        {employees.length === 0 && (
-          <div className="text-center">
-            <h2>{t("title")}</h2>
-          </div>
-        )}
+      <>
+        {i18n.t("hello")}
         <div className="container">
           <div className="row">
             <table className="table table-bordered">
@@ -77,53 +87,19 @@ class Employees extends React.Component<IProps, IState> {
                           </Link>
                           <button
                             className="btn btn-sm btn-outline-secondary"
-                            onClick={() => this.deleteEmployee(employee.id)}
+                            onClick={() => {if(window.confirm('Delete the item?')){this.deleteEmployee(employee.id)}}}
+                              
                           >
                             Delete Employee
                           </button>
-                          <Popup
-                            trigger={
-                              <button className="btn btn-sm btn-outline-secondary">
-                                {" "}
-                                Team Details{" "}
-                              </button>
-                            }
-                            modal
-                            nested
-                          >
-                            <div className="popupmodal">
-                              <div className="header">
-                                {" "}
-                                {employee.first_name}'s Team{" "}
-                              </div>
-                              <div className="content">
-                                <table className="table table-bordered">
-                                  <thead className="thead-light">
-                                    <tr>
-                                      <th scope="col">ID</th>
-                                      <th scope="col">Firstname</th>
-                                      <th scope="col">Lastname</th>
-                                      <th scope="col">Email</th>
-                                      <th scope="col">Password</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    {employees.map((emp) => {
-                                      return employee.id === emp.team_id ? (
-                                        <tr key={emp.id}>
-                                          <td>{emp.id}</td>
-                                          <td>{emp.first_name}</td>
-                                          <td>{emp.last_name}</td>
-                                          <td>{emp.email}</td>
-                                          <td>{emp.password}</td>
-                                        </tr>
-                                      ) : null;
-                                    })}
-                                  </tbody>
-                                </table>
-                              </div>
-                            </div>
-                          </Popup>
+                          <Popups
+                            first_name={employee.first_name}
+                            employees={employees}
+                            selectValue={selectValue}
+                            id={employee.id}
+                            handleChange={this.handleChange}
+                            options={options}
+                          />
                         </div>
                       </div>
                     </td>
@@ -132,8 +108,8 @@ class Employees extends React.Component<IProps, IState> {
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
+        </div >
+      </>
     );
   }
 }

@@ -3,22 +3,10 @@ import axios from 'axios';
 import { RouteComponentProps } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import { withTranslation } from 'react-i18next';
-import i18n from '../../i18n';
-import ValidationFormSchema from '../validationSchema/ValidationFormSchema';
+import i18n from '../../translations/i18n';
+import ValidationFormSchema from '../../validationSchema/ValidationFormSchema';
+import {IFormState} from '../../api/types/types'
 
-export interface IValues {
-    id: string,
-    first_name: string,
-    last_name: string,
-    email: string,
-    password: string,
-}
-export interface IFormState {
-    [key: string]: any;
-    values: IValues[];
-    submitSuccess: boolean;
-    loading: boolean;
-}
 class Create extends Component<RouteComponentProps<any>, IFormState> {
     constructor(props: any) {
         super(props);
@@ -39,7 +27,7 @@ class Create extends Component<RouteComponentProps<any>, IFormState> {
         const { submitSuccess } = this.state;
         return (
             <div>
-                {i18n.t("hello.label")}
+                {i18n.t("hello")}
                 <div className={"col-md-12 form-wrapper"}>
                     <h2> Create Employee </h2>
                     {!submitSuccess && (

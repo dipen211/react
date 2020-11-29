@@ -1,9 +1,9 @@
 import * as React from 'react';
 import './App.css';
 import { Switch, Route, withRouter, RouteComponentProps } from 'react-router-dom';
-import Employees from './components/Employees';
-import Create from './components/Employees/Create';
-import EditCustomer from './components/Employees/Edit';
+import Employees from './pages/Employees';
+import Create from './pages/Employee/Create';
+import EditCustomer from './pages/Employee/Edit';
 import Navbar from './header/navbar';
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 

@@ -2,7 +2,9 @@ import * as React from 'react';
 import axios from 'axios';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { Formik, Form, ErrorMessage, Field } from 'formik';
-import * as Yup from 'yup';
+import ValidationFormSchema from '../../validationSchema/ValidationFormSchema';
+import { withTranslation } from 'react-i18next';
+import i18n from '../../translations/i18n';
 
 export interface IValues {
     [key: string]: any;
@@ -50,7 +52,8 @@ class EditEmployee extends React.Component<RouteComponentProps<any>, IFormState>
     public render() {
         const { submitSuccess, loading } = this.state;
         return (
-            <div>
+            <>
+                {i18n.t("hello")}
                 <div className={"col-md-12 form-wrapper"}>
                     <h1> Employee Details Edit</h1>
                     {!submitSuccess && (
@@ -65,20 +68,7 @@ class EditEmployee extends React.Component<RouteComponentProps<any>, IFormState>
                     )}
                     <Formik
                         initialValues={this.state.employee}
-                        validationSchema={Yup.object().shape({
-                            id: Yup.string()
-                                .required('ID is required'),
-                            first_name: Yup.string()
-                                .required('First Name is required'),
-                            last_name: Yup.string()
-                                .required('Last Name is required'),
-                            email: Yup.string()
-                                .email('Email is invalid')
-                                .required('Email is required'),
-                            password: Yup.string()
-                                .required('Password is required')
-                                .min(6, 'Password must be at least 6 characters'),
-                        })}
+                        validationSchema={ValidationFormSchema}
                         onSubmit={async => {
                             this.setState({ loading: true });
                             axios.patch(`http://localhost:5000/employees/${this.state.id}`, this.state.values).then(data => {
@@ -124,7 +114,7 @@ class EditEmployee extends React.Component<RouteComponentProps<any>, IFormState>
                         }}
                     </Formik>
                 </div>
-            </div>
+            </>
         )
     }
 }
