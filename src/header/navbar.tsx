@@ -9,7 +9,6 @@ export default class Navbar extends Component {
             <div className="container">
                 <div className="row">
                     <nav className="navbar navbar-expand-lg navbar-dark nav-header">
-
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item">
                                 <Link to={'/'}> {i18n.t("employee")} </Link>
