@@ -15,7 +15,7 @@ class LanguageSelector extends Component {
       <div>
         <select onChange={(e) => i18n.changeLanguage(e.target.value)}>
           <option value="en">English</option>
-          <option value="es">Spanish</option>
+          <option value="es">Chiness</option>
         </select>
       </div>
     );

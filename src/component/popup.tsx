@@ -1,13 +1,14 @@
 import React from "react";
 import Popup from "reactjs-popup";
 import { DropDown } from './select';
+import i18n from '../translations/config';
 export const Popups = (Props: any) => {
     return (
         <Popup
             trigger={
                 <button className="btn btn-sm btn-outline-secondary">
                     {" "}
-                    Team Details{" "}
+                    {i18n.t("teamDetails")}{" "}
                 </button>
             }
             modal
@@ -28,11 +29,11 @@ export const Popups = (Props: any) => {
                     <table className="table table-bordered">
                         <thead className="thead-light">
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Firstname</th>
-                                <th scope="col">Lastname</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Password</th>
+                                <th scope="col">{i18n.t("id")}</th>
+                                <th scope="col">{i18n.t("fname")}</th>
+                                <th scope="col">{i18n.t("lname")}</th>
+                                <th scope="col">{i18n.t("email")}</th>
+                                <th scope="col">{i18n.t("password")}</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import LanguageSelector from '../LanguageSelector/LanguageSelector';
+import i18n from '../translations/config';
 
 export default class Navbar extends Component {
     render() {
@@ -11,7 +12,7 @@ export default class Navbar extends Component {
 
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item">
-                                <Link to={'/'}> Employees </Link>
+                                <Link to={'/'}> {i18n.t("employee")} </Link>
                             </li>
                         </ul>
                         <LanguageSelector />

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { RouteComponentProps } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { withTranslation } from 'react-i18next';
-import i18n from '../../translations/i18n';
+import i18n from '../../translations/config';
 import ValidationFormSchema from '../../validationSchema/ValidationFormSchema';
 import {IFormState} from '../../api/types/types'
 
@@ -27,17 +26,16 @@ class Create extends Component<RouteComponentProps<any>, IFormState> {
         const { submitSuccess } = this.state;
         return (
             <div>
-                {i18n.t("hello")}
                 <div className={"col-md-12 form-wrapper"}>
-                    <h2> Create Employee </h2>
+                    <h2> {i18n.t("cemployee")} </h2>
                     {!submitSuccess && (
                         <div className="alert alert-info" role="alert">
-                            Fill the form below to create a new Employee
+                            {i18n.t("cFillForm")}
                         </div>
                     )}
                     {submitSuccess && (
                         <div className="alert alert-info" role="alert">
-                            The form was successfully submitted!
+                            {i18n.t("cSubmitSuccess")}
                         </div>
                     )}
                     <Formik
@@ -65,35 +63,35 @@ class Create extends Component<RouteComponentProps<any>, IFormState> {
                                 <Form>
                                     <div className="form-row">
                                         <div className="form-group col-6">
-                                            <label>ID</label>
+                                            <label>{i18n.t("id")}</label>
                                             <Field name="id" type="text" className={'form-control' + (errors.id && touched.id ? ' is-invalid' : '')} />
                                             <ErrorMessage name="id" component="div" className="invalid-feedback" />
                                         </div>
                                         <div className="form-group col-6">
-                                            <label>First Name</label>
+                                            <label>{i18n.t("fname")}</label>
                                             <Field name="first_name" type="text" className={'form-control' + (errors.first_name && touched.first_name ? ' is-invalid' : '')} />
                                             <ErrorMessage name="first_name" component="div" className="invalid-feedback" />
                                         </div>
                                         <div className="form-group col-6">
-                                            <label>Last Name</label>
+                                            <label>{i18n.t("lname")}</label>
                                             <Field name="last_name" type="text" className={'form-control' + (errors.last_name && touched.last_name ? ' is-invalid' : '')} />
                                             <ErrorMessage name="last_name" component="div" className="invalid-feedback" />
                                         </div>
                                         <div className="form-group col-6">
-                                            <label>Email</label>
+                                            <label>{i18n.t("email")}</label>
                                             <Field name="email" type="text" className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')} />
                                             <ErrorMessage name="email" component="div" className="invalid-feedback" />
                                         </div>
                                     </div>
                                     <div className="form-group col-12">
-                                        <label>Password</label>
+                                        <label>{i18n.t("password")}</label>
                                         <Field name="password" type="password" className={'form-control' + (errors.password && touched.password ? ' is-invalid' : '')} />
                                         <ErrorMessage name="password" component="div" className="invalid-feedback" />
                                     </div>
                                     <div className="form-group">
                                         <button type="submit" disabled={isSubmitting} className="btn btn-primary">
                                             {isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
-                                            Save
+                                            {i18n.t("save")}
                                         </button>
                                     </div>
                                 </Form>

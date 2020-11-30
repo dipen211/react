@@ -2,7 +2,6 @@ import i18n from "i18next";
 import enLocale from "./en";
 import esLocale from "./chiness";
 import { initReactI18next } from "react-i18next";
-// import { getLocalStorage as GetLocalStorage } from "../store/localStorage";
 
 const resources = {
   en: {
@@ -16,8 +15,6 @@ const resources = {
     }
   }
 };
-
-// const language = GetLocalStorage("language");
 
 i18n.use(initReactI18next).init({
   lng: "en",

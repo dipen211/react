@@ -5,9 +5,8 @@ import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withTranslation } from "react-i18next";
 import { IProps, IState } from "../api/types/stateProps";
-import i18n from '../translations/i18n';
-import { Popups } from '../component/popup'
-
+import { Popups } from '../component/popup';
+import i18n from '../translations/config';
 class Employees extends React.Component<IProps, IState> {
   constructor(props: IProps | Readonly<IProps>) {
     super(props);
@@ -34,28 +33,26 @@ class Employees extends React.Component<IProps, IState> {
     console.log(selectValue.length);
   };
   setSelectValue = () => {
-    console.log("hiii");
     this.setState({ selectValue: [] });
-    console.log();
   }
   render() {
     const employees = this.state.employees;
     const { selectValue } = this.state;
     const options = employees.map((employee) => (employee.id));
+    
     return (
       <>
-        {i18n.t("hello")}
         <div className="container">
           <div className="row">
             <table className="table table-bordered">
               <thead className="thead-light">
                 <tr>
                   <th scope="col"></th>
-                  <th scope="col">Firstname</th>
-                  <th scope="col">Lastname</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Password</th>
-                  <th scope="col">Actions</th>
+                  <th scope="col">{i18n.t("fname")}</th>
+                  <th scope="col">{i18n.t("lname")}</th>
+                  <th scope="col">{i18n.t("email")}</th>
+                  <th scope="col">{i18n.t("password")}</th>
+                  <th scope="col">{i18n.t("action")}</th>
                 </tr>
               </thead>
               <tbody>
@@ -83,14 +80,14 @@ class Employees extends React.Component<IProps, IState> {
                             to={`edit/${employee.id}`}
                             className="btn btn-sm btn-outline-secondary"
                           >
-                            Edit Employee{" "}
+                            {i18n.t("eemployee")}{" "}
                           </Link>
                           <button
                             className="btn btn-sm btn-outline-secondary"
                             onClick={() => {if(window.confirm('Delete the item?')){this.deleteEmployee(employee.id)}}}
                               
                           >
-                            Delete Employee
+                            {i18n.t("demployee")}
                           </button>
                           <Popups
                             first_name={employee.first_name}

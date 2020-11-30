@@ -1,10 +1,9 @@
 import * as React from 'react';
 import axios from 'axios';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { Formik, Form, ErrorMessage, Field } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import ValidationFormSchema from '../../validationSchema/ValidationFormSchema';
-import { withTranslation } from 'react-i18next';
-import i18n from '../../translations/i18n';
+import i18n from '../../translations/config';
 
 export interface IValues {
     [key: string]: any;
@@ -53,17 +52,16 @@ class EditEmployee extends React.Component<RouteComponentProps<any>, IFormState>
         const { submitSuccess, loading } = this.state;
         return (
             <>
-                {i18n.t("hello")}
                 <div className={"col-md-12 form-wrapper"}>
-                    <h1> Employee Details Edit</h1>
+                    <h1> {i18n.t("eemployee")} </h1>
                     {!submitSuccess && (
                         <div className="alert alert-info" role="alert">
-                            Fill the form below to edit Employee
+                            {i18n.t("eFillForm")}
                         </div>
                     )}
                     {submitSuccess && (
                         <div className="alert alert-info" role="alert">
-                            Employee's details has been edited successfully
+                            {i18n.t("eSubmitSuccess")}
                         </div>
                     )}
                     <Formik
@@ -83,28 +81,28 @@ class EditEmployee extends React.Component<RouteComponentProps<any>, IFormState>
                             return (
                                 <Form id={"create-post-form"} onSubmit={this.processFormSubmission} noValidate={true}>
                                     <div className="form-group col-md-12">
-                                        <label htmlFor="first_name"> First Name </label>
+                                        <label htmlFor="first_name"> {i18n.t("fname")} </label>
                                         <input type="text" id="first_name" defaultValue={this.state.employee.first_name} onChange={(e) => this.handleInputChanges(e)} name="first_name" className={'form-control' + (errors.first_name && touched.first_name ? ' is-invalid' : '')} placeholder="Enter employee's first name" />
                                         <ErrorMessage name="first_name" component="div" className="invalid-feedback" />
                                     </div>
                                     <div className="form-group col-md-12">
-                                        <label htmlFor="last_name"> Last Name </label>
+                                        <label htmlFor="last_name"> {i18n.t("lname")} </label>
                                         <input type="text" id="last_name" defaultValue={this.state.employee.last_name} onChange={(e) => this.handleInputChanges(e)} name="last_name" className={'form-control' + (errors.first_name && touched.first_name ? ' is-invalid' : '')} placeholder="Enter employee's last name" />
                                         <ErrorMessage name="last_name" component="div" className="invalid-feedback" />
                                     </div>
                                     <div className="form-group col-md-12">
-                                        <label htmlFor="email"> Email </label>
+                                        <label htmlFor="email"> {i18n.t("email")} </label>
                                         <input type="email" id="email" defaultValue={this.state.employee.email} onChange={(e) => this.handleInputChanges(e)} name="email" className={'form-control' + (errors.first_name && touched.first_name ? ' is-invalid' : '')} placeholder="Enter employee's email address" />
                                         <ErrorMessage name="email" component="div" className="invalid-feedback" />
                                     </div>
                                     <div className="form-group col-md-12">
-                                        <label htmlFor="password"> Password </label>
+                                        <label htmlFor="password"> {i18n.t("password")} </label>
                                         <input type="password" id="password" defaultValue={this.state.employee.password} onChange={(e) => this.handleInputChanges(e)} name="password" className={'form-control' + (errors.first_name && touched.first_name ? ' is-invalid' : '')} placeholder="Enter employee's password number" />
                                         <ErrorMessage name="password" component="div" className="invalid-feedback" />
                                     </div>
                                     <div className="form-group col-md-4 pull-right">
                                         <button className="btn btn-success" type="submit">
-                                            Edit Employee </button>
+                                        {i18n.t("eemployee")} </button>
                                         {loading &&
                                             <span className="fa fa-circle-o-notch fa-spin" />
                                         }

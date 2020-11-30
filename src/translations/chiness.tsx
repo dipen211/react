@@ -1,4 +1,19 @@
 export default {
-    hello: "你好",
-    thankyou: "謝謝你"
+    id: "身分證",
+    fname: "名字",
+    lname: "姓",
+    email: "電子郵件",
+    password: "密碼",
+    action: "行動",
+    employee: "僱員",
+    eemployee: "編輯員工",
+    demployee: "刪除員工",
+    ditem: "刪除項目",
+    cemployee: "創建員工",
+    cFillForm: "填寫以下表格以創建新員工",
+    cSubmitSuccess: "表格已成功提交！",
+    save: "救",
+    eFillForm: "填寫以下表格以編輯員工",
+    eSubmitSuccess: "員工詳細信息已成功編輯",
+    teamDetails: "團隊詳情",
   };

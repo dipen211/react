@@ -1,4 +1,19 @@
 export default {
-  hello: "Hello",
-  thankyou: "Thank you"
+  id: "ID",
+  fname: "First Name",
+  lname: "Last Name",
+  email: "Email",
+  password: "Password",
+  action: "Action",
+  employee: "Employee",
+  eemployee: "Edit Employee",
+  demployee: "Delete Employee",
+  ditem: "Delete Item",
+  cemployee: "Create Employee",
+  cFillForm: "Fill the form to create Employee",
+  cSubmitSuccess: "Employee Created successfully",
+  save: "Save",
+  eFillForm: "Fill the form below to edit Employee",
+  eSubmitSuccess: "Employee's details has been edited successfully",
+  teamDetails: "Team Details",
 };
