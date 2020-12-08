@@ -7,6 +7,8 @@ import { withTranslation } from "react-i18next";
 import { IProps, IState } from "../api/types/stateProps";
 import { Popups } from '../component/popup';
 import i18n from '../translations/config';
+import Dictaphone from './VoiceRecognition';
+
 class Employees extends React.Component<IProps, IState> {
   constructor(props: IProps | Readonly<IProps>) {
     super(props);
@@ -35,13 +37,15 @@ class Employees extends React.Component<IProps, IState> {
   setSelectValue = () => {
     this.setState({ selectValue: [] });
   }
+
   render() {
     const employees = this.state.employees;
     const { selectValue } = this.state;
     const options = employees.map((employee) => (employee.id));
-    
+
     return (
       <>
+        <Dictaphone />
         <div className="container">
           <div className="row">
             <table className="table table-bordered">
@@ -84,8 +88,8 @@ class Employees extends React.Component<IProps, IState> {
                           </Link>
                           <button
                             className="btn btn-sm btn-outline-secondary"
-                            onClick={() => {if(window.confirm('Delete the item?')){this.deleteEmployee(employee.id)}}}
-                              
+                            onClick={() => { if (window.confirm('Delete the item?')) { this.deleteEmployee(employee.id) } }}
+
                           >
                             {i18n.t("demployee")}
                           </button>

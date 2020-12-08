@@ -60,7 +60,7 @@ class Create extends Component<RouteComponentProps<any>, IFormState> {
                         }}>
                         {({ errors, touched, isSubmitting }) => {
                             return (
-                                <Form>
+                                <Form className="container">
                                     <div className="form-row">
                                         <div className="form-group col-6">
                                             <label>{i18n.t("id")}</label>
