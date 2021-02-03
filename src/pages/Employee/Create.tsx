@@ -4,13 +4,13 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import i18n from '../../translations/config';
 import ValidationFormSchema from '../../validationSchema/ValidationFormSchema';
-import {IFormState} from '../../api/types/types'
+import { IFormState } from '../../api/types/types'
 
 class Create extends Component<RouteComponentProps<any>, IFormState> {
     constructor(props: any) {
         super(props);
         this.state = {
-            team_id: this.props.match.params.id,
+            team_id: 1, //this.props.match.params.id,
             id: '',
             first_name: '',
             last_name: '',
@@ -21,7 +21,23 @@ class Create extends Component<RouteComponentProps<any>, IFormState> {
             submitSuccess: false,
         }
     }
-
+    submit = (values: any) => {
+        this.setState({ loading: true });
+        const formData = {
+            id: values.id,
+            team_id: this.state.team_id,
+            first_name: values.first_name,
+            last_name: values.last_name,
+            email: values.email,
+            password: values.password,
+        }
+        this.setState({ submitSuccess: true, values: [...this.state.values, formData], loading: false });
+        axios.post(`http://localhost:5000/employees`, formData).then(data => [
+            setTimeout(() => {
+                this.props.history.push('/');
+            }, 1500)
+        ]);
+    }
     public render() {
         const { submitSuccess } = this.state;
         return (
@@ -41,23 +57,7 @@ class Create extends Component<RouteComponentProps<any>, IFormState> {
                     <Formik
                         initialValues={this.state}
                         validationSchema={ValidationFormSchema}
-                        onSubmit={async values => {
-                            this.setState({ loading: true });
-                            const formData = {
-                                id: values.id,
-                                team_id: this.state.team_id,
-                                first_name: values.first_name,
-                                last_name: values.last_name,
-                                email: values.email,
-                                password: values.password,
-                            }
-                            this.setState({ submitSuccess: true, values: [...this.state.values, formData], loading: false });
-                            axios.post(`http://localhost:5000/employees`, formData).then(data => [
-                                setTimeout(() => {
-                                    this.props.history.push('/');
-                                }, 1500)
-                            ]);
-                        }}>
+                        onSubmit={(values) => this.submit(values)}>
                         {({ errors, touched, isSubmitting }) => {
                             return (
                                 <Form className="container">

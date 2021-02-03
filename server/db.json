@@ -1,14 +1,6 @@
 {
   "employees": [
     {
-      "id": "0",
-      "team_id": "2",
-      "first_name": "Dipen",
-      "last_name": "Patel",
-      "email": "pateldipen161@gmail.com",
-      "password": "xcvbnmncxcv"
-    },
-    {
       "id": "1",
       "team_id": "2",
       "first_name": "Divya",

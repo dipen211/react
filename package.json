@@ -17,6 +17,7 @@
     "@types/react-dom": "^16.9.10",
     "@types/react-router-dom": "^5.1.6",
     "@types/react-speech-recognition": "^3.1.0",
+    "@types/react-test-renderer": "^17.0.0",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
     "formik": "^2.2.5",
@@ -66,8 +67,12 @@
     ]
   },
   "devDependencies": {
+    "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/react-bootstrap": "^0.32.24",
     "@types/react-select": "^3.0.26",
-    "@types/yup": "^0.29.9"
+    "@types/yup": "^0.29.9",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "enzyme-to-json": "^3.6.1"
   }
 }

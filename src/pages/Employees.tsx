@@ -7,7 +7,7 @@ import { withTranslation } from "react-i18next";
 import { IProps, IState } from "../api/types/stateProps";
 import { Popups } from '../component/popup';
 import i18n from '../translations/config';
-import Dictaphone from './VoiceRecognition';
+import Dictaphone from '../component/VoiceRecognition';
 
 class Employees extends React.Component<IProps, IState> {
   constructor(props: IProps | Readonly<IProps>) {
@@ -24,6 +24,7 @@ class Employees extends React.Component<IProps, IState> {
     });
   }
   public deleteEmployee(id: number) {
+    console.log(typeof(id));
     axios.delete(`http://localhost:5000/employees/${id}`).then(data => {
       const index = this.state.employees.findIndex(employee => employee.id === id);
       this.state.employees.splice(index, 1);
@@ -45,7 +46,8 @@ class Employees extends React.Component<IProps, IState> {
 
     return (
       <>
-        <Dictaphone />
+        <Dictaphone 
+        deleteEmployee= {this.deleteEmployee}/>
         <div className="container">
           <div className="row">
             <table className="table table-bordered">
