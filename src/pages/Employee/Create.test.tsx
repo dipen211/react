@@ -6,9 +6,9 @@ import Create from './Create';
 import { RouteComponentProps } from 'react-router-dom';
 import { IFormState } from '../../api/types/types';
 import { Formik } from 'formik';
-
 Enzyme.configure({ adapter: new Adapter() });
 const mockfn = jest.fn();
+
 describe('Create', () => {
     let wrapper: any;
     const props: RouteComponentProps<{}> = {
@@ -16,7 +16,6 @@ describe('Create', () => {
         location: mockfn,
         match: mockfn,
     }
-    let submit: () => void;
     beforeEach(() => {
         wrapper = shallow(<Create {...props} />);
     });
@@ -73,15 +72,11 @@ describe('Create', () => {
         const expectedArg = "id: 1, first_name: Dipen, last_name: Dipen, email: Dipen@gmail.com, password: dipen";
         window.alert = jest.fn();
         wrapper.setState(state);
-        wrapper.find('Formik').simulate('submit')
+        wrapper.find('Formik').simulate('submit', { preventDefault: () => { } });
+        setTimeout(() => {
+            wrapper.update();
+        }, 0);
         expect(window.alert).toHaveBeenCalledWith(expectedArg);
-        
-        const submitForm = (props = { }) =>
-            wrapper
-                .find(Formik)
-                .renderProp('children')(props);
-
-        submitForm({ submitSuccess: true, values: [state], loading: false });
     });
 
     it('should return error for invalid id', () => {
@@ -98,7 +93,7 @@ describe('Create', () => {
             isSubmitting: false
         });
 
-        expect(formWithInvalidIdErrors).toEqual(/id is invalid/);
+        expect(formWithInvalidIdErrors.html()).toEqual(/id is invalid/);
     });
     it('should return error for invalid first_name', () => {
         const first_name = (props = { errors: {} }) =>
@@ -114,7 +109,7 @@ describe('Create', () => {
             isSubmitting: false
         });
 
-        expect(formWithInvalidFirstNameErrors).toEqual("/first_name is invalid/");
+        expect(formWithInvalidFirstNameErrors.html()).toEqual("/first_name is invalid/");
     });
 
     it('should return error for invalid last_name', () => {
@@ -131,7 +126,7 @@ describe('Create', () => {
             isSubmitting: false
         });
 
-        expect(formWithInvalidLastNameErrors).toEqual(/last_name is invalid/);
+        expect(formWithInvalidLastNameErrors.html()).toEqual(/last_name is invalid/);
     });
 
     it('should return error for invalid email address', () => {
@@ -148,7 +143,7 @@ describe('Create', () => {
             isSubmitting: false
         });
 
-        expect(formWithInvalidEmailErrors).toEqual(/Email is invalid/);
+        expect(formWithInvalidEmailErrors.html()).toEqual(/Email is invalid/);
     });
 
     it('should return error for invalid password', () => {
@@ -165,6 +160,6 @@ describe('Create', () => {
             isSubmitting: false
         });
 
-        expect(formWithInvalidPasswordErrors).toEqual(/Password is invalid/);
+        expect(formWithInvalidPasswordErrors.html()).toEqual(/Password is invalid/);
     });
 })

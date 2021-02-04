@@ -19,7 +19,7 @@ class EditEmployee extends React.Component<RouteComponentProps<any>, IFormState>
     constructor(props: RouteComponentProps) {
         super(props);
         this.state = {
-            id: this.props.match.params.id,
+            id: 1, //this.props.match.params.id,
             employee: {},
             values: [],
             loading: false,
@@ -27,9 +27,10 @@ class EditEmployee extends React.Component<RouteComponentProps<any>, IFormState>
         }
     }
     public componentDidMount(): void {
-        axios.get(`http://localhost:5000/employees/${this.state.id}`).then(data => {
-            this.setState({ employee: data.data });
-        })
+        axios.get(`http://localhost:5000/employees/${this.state.id}`)
+            .then(data => {
+                this.setState({ employee: data.data });
+            })
     }
     private processFormSubmission = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
@@ -102,7 +103,7 @@ class EditEmployee extends React.Component<RouteComponentProps<any>, IFormState>
                                     </div>
                                     <div className="form-group col-md-4 pull-right">
                                         <button className="btn btn-success" type="submit">
-                                        {i18n.t("eemployee")} </button>
+                                            {i18n.t("eemployee")} </button>
                                         {loading &&
                                             <span className="fa fa-circle-o-notch fa-spin" />
                                         }
@@ -116,7 +117,7 @@ class EditEmployee extends React.Component<RouteComponentProps<any>, IFormState>
         )
     }
 }
-export default withRouter(EditEmployee);
+export default EditEmployee;
 
 
 
