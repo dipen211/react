@@ -9,12 +9,11 @@ Enzyme.configure({ adapter: new Adapter() });
 const mockfn = jest.fn();
 
 jest.mock('axios', () => {
-    const exampleArticles = [
+    const employees = [
         { title: 'employee', url: 'http://localhost:5000/employees/' }
     ];
-
     return {
-        get: jest.fn(() => Promise.resolve(exampleArticles)),
+        get: jest.fn(() => Promise.resolve(employees)),
     };
 });
 
@@ -35,38 +34,37 @@ describe('EditEmployee', () => {
 
     it('Should capture firstname correctly onChange', () => {
         wrapper.find('Field').first();
-        wrapper.simulate('change', { preventDefault: () => { } });
-        wrapper.setState({ first_name: "Dipen" })
+        wrapper.simulate('change');
+        wrapper.setState({ first_name: "Dipen" });
         expect(wrapper.state('first_name')).toEqual('Dipen');
     })
     it('Should capture last_name correctly onChange', () => {
-        wrapper.find('Field').at(1);
-        wrapper.simulate('change', { preventDefault: () => { } });
-        wrapper.setState({ last_name: "Dipen" })
+        wrapper.find('input[id="last_name"]');
+        wrapper.simulate('change');
+        wrapper.setState({ last_name: "Dipen" });
         expect(wrapper.state('last_name')).toEqual('Dipen');
     })
     it('Should capture email correctly onChange', () => {
         wrapper.find('input').at(2);
-        wrapper.simulate('change', { preventDefault: () => { } });
-        wrapper.setState({ email: "Dipen" })
+        wrapper.simulate('change');
+        wrapper.setState({ email: "Dipen" });
         expect(wrapper.state('email')).toEqual('Dipen');
     });
-
     it('Should capture password correctly onChange', () => {
         wrapper.find('input').at(3);
-        wrapper.simulate('change', { preventDefault: () => { } });
-        wrapper.setState({ password: "Dipen" })
-        expect(wrapper.state.employee('password')).toEqual('Dipen');
+        wrapper.simulate('change');
+        wrapper.setState({ password: "Dipen" });
+        expect(wrapper.state('password')).toEqual('Dipen');
     });
     it('handle handleInputChanges', () => {
-        wrapper.instance().handleInputChanges({ target: { value: 'test', name: 'email' } });
+        wrapper.instance().handleInputChanges({ target: { value: '1', name: 'id' } });
         wrapper.update();
-        expect(wrapper.state('email')).toEqual('test');
+        expect(wrapper.state('id')).toEqual('1');
     });
     it('handle setValues', () => {
-        wrapper.instance().setValues({ target: { value: 'test', name: 'email' } });
+        wrapper.instance().setValues({ target: { value: 1, name: 'id' } });
         wrapper.update();
-        expect(wrapper.state('email')).toEqual('test');
+        expect(wrapper.state('id')).toEqual(1);
     });
     it('should submit a valid form', () => {
         const state = {

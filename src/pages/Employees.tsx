@@ -19,25 +19,28 @@ class Employees extends React.Component<IProps, IState> {
     };
   }
   public componentDidMount(): void {
+    this.getData();
+  }
+  public getData = () => {
     axios.get(`http://localhost:5000/employees`).then((data) => {
       this.setState({ employees: data.data });
     });
   }
   public deleteEmployee(id: number) {
-    console.log(typeof(id));
+    console.log(typeof (id));
     axios.delete(`http://localhost:5000/employees/${id}`).then(data => {
       const index = this.state.employees.findIndex(employee => employee.id === id);
       this.state.employees.splice(index, 1);
       this.props.history.push('/');
     })
   }
-  handleChange = (selectValue: any) => {
-    this.setState({ selectValue });
-    console.log(selectValue.length);
-  };
-  setSelectValue = () => {
-    this.setState({ selectValue: [] });
-  }
+  // handleChange = (selectValue: any) => {
+  //   this.setState({ selectValue });
+  //   console.log(selectValue.length);
+  // };
+  // setSelectValue = () => {
+  //   this.setState({ selectValue: [] });
+  // }
 
   render() {
     const employees = this.state.employees;
@@ -46,8 +49,8 @@ class Employees extends React.Component<IProps, IState> {
 
     return (
       <>
-        <Dictaphone 
-        deleteEmployee= {this.deleteEmployee}/>
+        {/* <Dictaphone
+        deleteEmployee= {this.deleteEmployee}/> */}
         <div className="container">
           <div className="row">
             <table className="table table-bordered">
@@ -95,14 +98,14 @@ class Employees extends React.Component<IProps, IState> {
                           >
                             {i18n.t("demployee")}
                           </button>
-                          <Popups
+                          {/* <Popups
                             first_name={employee.first_name}
                             employees={employees}
                             selectValue={selectValue}
                             id={employee.id}
                             handleChange={this.handleChange}
                             options={options}
-                          />
+                          /> */}
                         </div>
                       </div>
                     </td>
